@@ -18,6 +18,8 @@ detector = htm.handDetector()
 
 while True:
     success,image = cap.read()
+    Reference = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Referece.jpg')
+    cv2.imshow('Reference',Reference)
 
 
     image = cv2.resize(image,(900,600))
@@ -30,11 +32,11 @@ while True:
 
 
     if len(lmlist) !=0:
-        thumb1 = lmlist[4][0] #   zero |thumb
-        index1 = lmlist[8][0] #   one  |index
-        middle1 = lmlist[12][0] # two |middle
-        ring1 = lmlist[16][0] #      three | Ring
-        small1 = lmlist[20][0] #    four  | small
+        thumb1 = lmlist[4][0]   #   zero  |thumb
+        index1 = lmlist[8][0]   #   one   |index
+        middle1 = lmlist[12][0] #   two   |middle
+        ring1 = lmlist[16][0]   #   three | Ring
+        small1 = lmlist[20][0]  #   four  | small
 
 
         # print(lmlist[4][1:]," new ",lmlist[8][1:])
@@ -46,7 +48,6 @@ while True:
         I_M_distance = math.dist((lmlist[8][1],lmlist[8][2]),(lmlist[12][1],lmlist[12][2]))
         R_M_distance = math.dist((lmlist[16][1],lmlist[16][2]),(lmlist[12][1],lmlist[12][2]))
         S_Z_distance = math.dist((lmlist[20][1],lmlist[20][2]),(lmlist[0][1],lmlist[0][2]))
-        print(S_Z_distance)
         # Angle b/w points
 
         x1,y1 = lmlist[8][1:]
@@ -56,7 +57,7 @@ while True:
         I_I_I_angle = math.degrees(math.atan2(y3 - y2, x3 - x2) -
                              math.atan2(y1 - y2, x1 - x2))
         
-        # points 
+        # Angle between iit 
 
         x4,y4 = lmlist[8][1:] 
         x5,y5 = lmlist[5][1:] 
@@ -64,6 +65,17 @@ while True:
 
         I_I_T_angle = math.degrees(math.atan2(y6 - y5, x6 - x5) -
                              math.atan2(y4 - y2, x4 - x5))
+        
+        # Angle between  8,5,12
+
+        x7,y7 = lmlist[8][1:] 
+        x8,y8 = lmlist[5][1:] 
+        x9,y9 = lmlist[12][1:] 
+
+
+        I_H_M_angle = math.degrees(math.atan2(y7 - y8, x7 - x8) -
+                             math.atan2(y9 - y2, x9 - x5))
+        print(I_H_M_angle)
         
 
 
@@ -81,44 +93,66 @@ while True:
 
 # loop for do function
     if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
-        print("A")
+        A = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/a.png')
+        A = cv2.resize(A,(300,300))
+        cv2.imshow('pic',A)
 
     if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '1' and fin[13] == '1'):
-        print("B")
+        B = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/b.png')
+        B = cv2.resize(B,(300,300))
+        cv2.imshow("pic",B)
 
-    if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance<20):
-        print("C")
+    if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance<50):
+        C = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/c.png')
+        C = cv2.resize(C,(300,300))
+        cv2.imshow("pic",C)
 
-    if (fin[1] == '1' and fin[4] == '1' and fin[7] == '0' and fin[13]=='0' and fin[10]=='0'and T_S_distance<70):
-        print('D')
+    if (fin[1] == '1' and fin[4] == '1' and fin[7] == '0' and fin[13]=='0' and fin[10]=='0'and T_S_distance>30):
+        D = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/d.png')
+        D = cv2.resize(D,(300,300))
+        cv2.imshow("pic",D)
 
     if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0'):
-        print("E")
+        E = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/e.png')
+        E = cv2.resize(E,(300,300))
+        cv2.imshow("pic",E)
 
     if (fin[13] == '1' and fin[10] == '1' and fin[7] == '1' and fin[1]== '0' and fin[4] == '0'):
-        print("F")
+        F = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/f.jpg')
+        F = cv2.resize(F,(300,300))
+        cv2.imshow("pic",F)
 
     # if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
     #     print("G")
 
     if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and I_M_distance<50):
-        print("H")
+        H = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/h.jpg')
+        H = cv2.resize(H,(300,300))
+        cv2.imshow("pic",H)
 
     if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '1'):
-        print("I")
+        I = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/i.jpg')
+        I = cv2.resize(I,(300,300))
+        cv2.imshow("pic",I)
 
     # if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_S_distance<30):
     #     print("J")
 
     if (fin[1] == '1' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
-        print("K")
+        K = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/k.jpg')
+        K = cv2.resize(K,(300,300))
+        cv2.imshow("pic",K)
 
     if (fin[1] == '1' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_T_angle>60):
-        print("L")
+        L = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/l.jpg')
+        L = cv2.resize(L,(300,300))
+        cv2.imshow("pic",L)
 
     if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '1' and fin[13] == '0' and R_M_distance<40):
-        print("M")
-    
+        M = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/m.jpg')
+        M = cv2.resize(M,(300,300))
+        cv2.imshow("pic",M)
+
     # if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0'):
     #     print("N")
 
@@ -129,7 +163,9 @@ while True:
     #     print("P")
     
     if (fin[1] == '1' and fin[4] == '0' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0'):
-        print("Q")
+        Q = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/q.jpg')
+        Q = cv2.resize(Q,(300,300))
+        cv2.imshow("pic",Q)
 
     # if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and M_T_distance < 50):
     #     print("R")
@@ -138,34 +174,41 @@ while True:
     #     print("S")
 
     # if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and R_T_distance<50):
-    #     print("O")
-
-    # if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and R_T_distance<50):
-    #     print("S")
-
-    # if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and R_T_distance<50):
     #     print("T")
 
-    # if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
-    #     print("U")    
+   
 
-    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and I_M_distance>50):
-        print("U") # R
+    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and I_M_distance>50 and I_H_M_angle<50):
+        U = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/u.jpg')
+        U = cv2.resize(U,(300,300))
+        cv2.imshow("pic",U)
 
-    if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
-        print("A") # V
+
+    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and I_H_M_angle>50):
+        V = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/v.jpg')
+        V = cv2.resize(V,(300,300))
+        cv2.imshow("pic",V)
+
 
     if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '1' and fin[13] == '0' and R_M_distance>50):
-        print("W")
+        W = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/w.jpg')
+        W = cv2.resize(W,(300,300))
+        cv2.imshow("pic",W)
 
-    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_I_angle<80):
-        print("X")
+    # if (fin[1] == '0' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_I_angle<80):
+    #     X = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/x.jpg')
+    #     X = cv2.resize(X,(300,300))
+    #     cv2.imshow("pic",X)
 
     if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '1'):
-        print("Y")
+        Y = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/y.jpg')
+        Y = cv2.resize(Y,(300,300))
+        cv2.imshow("pic",Y)
 
     if (fin[1] == '1' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_T_angle<30):
-        print("Z")
+        Z = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/z.jpg')
+        Z = cv2.resize(Z,(300,300))
+        cv2.imshow("pic",Z)
 
         
         
