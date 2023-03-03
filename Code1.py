@@ -6,7 +6,6 @@ import math
 import poseModule as pm
 
 
-detector = pm.poseDetector()
 # mpHands = mp.solutions.hands
 # hands = mpHands.Hands(max_num_hands=1, min_detection_confidence=0.7)
 # mpDraw = mp.solutions.drawing_utils
@@ -75,7 +74,6 @@ while True:
 
         I_H_M_angle = math.degrees(math.atan2(y7 - y8, x7 - x8) -
                              math.atan2(y9 - y2, x9 - x5))
-        print(I_H_M_angle)
         
 
 
@@ -83,7 +81,6 @@ while True:
     # print(fingers)
 
     fin = str(fingers)
-    # print(fin[10])
     
     # 1 == thumb
     # 4 == fore finger
@@ -91,7 +88,7 @@ while True:
     # 10 == Ring
     # 13 == small
 
-# loop for do function
+# loop to see the alphabets
     if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_I_distance>90):
         A = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/a.png')
         A = cv2.resize(A,(300,300))
@@ -167,8 +164,10 @@ while True:
         Q = cv2.resize(Q,(300,300))
         cv2.imshow("pic",Q)
 
-    # if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0' and M_T_distance < 50):
-    #     print("R")
+#    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '1' and fin[10]== '0' and fin[13] == '0'):
+#        R = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/r.jpg')
+#        R = cv2.resize(R,(300,300))
+#        cv2.imshow("pic",R)
 
     # if (fin[1] == '0' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and T_S_distance>20):
     #     print("S")
@@ -195,17 +194,17 @@ while True:
         W = cv2.resize(W,(300,300))
         cv2.imshow("pic",W)
 
-    # if (fin[1] == '0' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_I_angle<80):
-    #     X = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/x.jpg')
-    #     X = cv2.resize(X,(300,300))
-    #     cv2.imshow("pic",X)
+    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_I_angle<160):
+        X = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/x.jpg')
+        X = cv2.resize(X,(300,300))
+        cv2.imshow("pic",X)
 
     if (fin[1] == '1' and fin[4] == '0' and fin[7] == '0' and fin[10]== '0' and fin[13] == '1'):
         Y = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/y.jpg')
         Y = cv2.resize(Y,(300,300))
         cv2.imshow("pic",Y)
 
-    if (fin[1] == '1' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_T_angle<30):
+    if (fin[1] == '0' and fin[4] == '1' and fin[7] == '0' and fin[10]== '0' and fin[13] == '0' and I_I_I_angle>170):
         Z = cv2.imread('/home/user/Desktop/Deaf_people_hand_sign/Data/z.jpg')
         Z = cv2.resize(Z,(300,300))
         cv2.imshow("pic",Z)
